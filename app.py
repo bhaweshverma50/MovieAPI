@@ -12,5 +12,10 @@ def recommend_movies():
     return jsonify(res)
 
 
+@app.route('/', methods=['GET'])
+def home():
+    return '<h3>Recommender API running!</h3>'
+
+
 if __name__ == '__main__':
     app.run()
