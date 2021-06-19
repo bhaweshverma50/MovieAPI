@@ -38,7 +38,7 @@ def recommend_movies(title, data, combine, transform):
 
     sim_scores = list(enumerate(transform[index]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:51]
+    sim_scores = sim_scores[1:21]
 
     movie_indices = [i[0] for i in sim_scores]
 
