@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import recommendation
+import music
 
 app = Flask(__name__)
 CORS(app)
@@ -9,6 +10,12 @@ CORS(app)
 @app.route('/movie', methods=['GET'])
 def recommend_movies():
     res = recommendation.results(request.args.get('title'))
+    return jsonify(res)
+
+
+@app.route('/music', methods=['GET'])
+def recommend_music():
+    res = music.recom(request.args.get('track'))
     return jsonify(res)
 
 
