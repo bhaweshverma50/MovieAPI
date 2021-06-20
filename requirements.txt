@@ -13,3 +13,4 @@ scipy
 wcwidth
 webencodings
 Werkzeug
+Spotipy
