@@ -10,17 +10,21 @@ from os import environ
 #     list = json.dumps(list)
 #     print(list)
 
-x = environ.get('CLIENT_ID')
-y = environ.get('CLIENT_SECRET')
+CLIENT_ID = environ.get('CLIENT_ID')
+CLIENT_SECRET = environ.get('CLIENT_SECRET')
 
 
 def recom(song):
     print(song)
     sp = spotipy.Spotify(
-        client_credentials_manager=SpotifyClientCredentials(x, y))
+        client_credentials_manager=SpotifyClientCredentials(CLIENT_ID, CLIENT_SECRET))
 
-    result = sp.search(q=song, limit=1)
-    id_list = [result['tracks']['items'][0]['id']]
-    rec = sp.recommendations(seed_tracks=id_list, limit=10)
+    result = sp.search(q=song, limit=1, type='track', market=None)
+    try:
+        id_list = [result['tracks']['items'][0]['id']]
+    except:
+        return 'Sorry! Seems like there is no match!'
+    rec = sp.recommendations(seed_tracks=id_list, limit=20)
+
     # display(rec)
     return rec['tracks']
