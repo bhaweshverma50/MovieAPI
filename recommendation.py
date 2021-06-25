@@ -5,7 +5,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 def get_data():
-    movie_data = pd.read_csv('dataset/movie_data.csv.zip')
+    movie_data = pd.read_csv('dataset/new_df.csv.zip')
     movie_data['original_title'] = movie_data['original_title'].str.lower()
     return movie_data
 
@@ -69,3 +69,9 @@ def results(movie_name):
         recommendations = recommend_movies(
             movie_name, find_movie, combine_result, transform_result)
         return recommendations.to_dict('records')
+
+
+def sugg():
+    findmov = get_data()
+    result = findmov['original_title'].to_json(orient="split")
+    return result

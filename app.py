@@ -13,6 +13,12 @@ def recommend_movies():
     return jsonify(res)
 
 
+@app.route('/suggestion', methods=['GET'])
+def suggest_movies():
+    res = recommendation.sugg()
+    return jsonify(res)
+
+
 @app.route('/music', methods=['GET'])
 def recommend_music():
     res = music.recom(request.args.get('track'))
